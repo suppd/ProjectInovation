@@ -3,18 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class RoundManager : MonoBehaviour
 {
     public int round;
-    public int[] turn;
+    public int turn;
+    public int turnsPerRound;
+
     
     [SerializeField] private PlayerManager _playerManager;
     private List<PlayerElements> _newOrder = new List<PlayerElements>();
     private List<int> _orderer = new List<int>();
 
-    void Reorder()
+    [SerializeField] private GameObject _currentPlayer;
+    [SerializeField] private GameObject _nextPlayer;
+
+    public void Reorder()
     {
         ///<Summary>
         /// have a int list with the same lenght as the player list<order>
@@ -41,6 +47,9 @@ public class RoundManager : MonoBehaviour
                 _newOrder.Add(_playerManager._playerElements[_orderer[rand]]);
                 _orderer.Remove(_orderer[rand]);
         }
+
+        turnsPerRound = _newOrder.Count;
+        turn = 0;
     }
 
     private void Update()
@@ -59,18 +68,32 @@ public class RoundManager : MonoBehaviour
         {
             Debug.Log(_newOrder[i].playerName);
         }
-        _newOrder.Clear();//for testing purpases
     }
-
-    void Turn()
+    
+    
+    public void Turn()
     {
-        switch (turn.Length)
+        turn++;
+        var currentPlayerName = _currentPlayer.GetComponentInChildren<Text>();
+        currentPlayerName.text = _newOrder[turn].playerName;
+        
+        if (turn != turnsPerRound)
         {
-            default:
-                print ("None");
-                break;
+            var nextPlayerName = _nextPlayer.GetComponentInChildren<Text>();
+            nextPlayerName.text = _newOrder[turn+1].playerName;
+        }else
+        {
+            var nextPlayerName = _nextPlayer.GetComponentInChildren<Text>();
+            nextPlayerName.text = "end of round";
+        }
+
+        if (turn > turnsPerRound)
+        {
+            //_newOrder.Clear();//for testing purpases
+            round++;
         }
     }
+    
     void Rounds()
     {
         switch (round)
