@@ -20,14 +20,39 @@ public class CardElements
 
 public class CardSounds
 {
+    //lists//
+    List<AudioSource> pointCardSounds;
+    List<AudioSource> specialCardSounds;
+
+
+    public AudioSource pointCard1;
+    public AudioSource pointCard2;
+    public AudioSource pointCard3;
+    public AudioSource pointCard4;
+    public AudioSource pointCard5;
+    public AudioSource pointCard6;
+
+    public AudioSource specialCard1;
+    public AudioSource specialCard2;
+    public AudioSource specialCard3;
+    public AudioSource specialCard4;
+
+    public AudioSource strongCard;
+
     public string SoundName;
+    public GameObject pointSound;
+    void Start()
+    {
+        pointCardSounds.Add(pointSound.GetComponent<AudioSource>());
+    }
     public enum CardType
     {
         point,
         power,
         shifter
     };
-    public AudioSource Sound;
+
+    
 }
 
 public class CardManager : MonoBehaviour
