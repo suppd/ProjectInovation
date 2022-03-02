@@ -17,6 +17,7 @@ public class NFC_Reader : MonoBehaviour
     private string sAction;
 
     public Text displayText;
+    public CardSounds cardSoundsScript;
 
 
     void Start()
@@ -69,19 +70,29 @@ public class NFC_Reader : MonoBehaviour
     {
         if(ScanNFC() == "PowerCard.1")
         {
-
+            cardSoundsScript.pointCardSoundElements[0].sound.Play();
         }
         if (ScanNFC() == "PowerCard.2")
         {
-
+            cardSoundsScript.pointCardSoundElements[1].sound.Play();
         }
         if (ScanNFC() == "PowerCard.3")
         {
-
+            cardSoundsScript.pointCardSoundElements[2].sound.Play();
         }
         if (ScanNFC() == "PowerCard.4")
         {
+            cardSoundsScript.pointCardSoundElements[3].sound.Play();
+        }
 
+        if (ScanNFC() == "PowerCard.5")
+        {
+            cardSoundsScript.pointCardSoundElements[4].sound.Play();
+        }
+
+        if (ScanNFC() == "PowerCard.6")
+        {
+            cardSoundsScript.pointCardSoundElements[5].sound.Play();
         }
     }
 }
