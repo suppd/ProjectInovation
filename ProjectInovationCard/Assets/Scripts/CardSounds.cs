@@ -14,6 +14,7 @@ public class CardSounds : MonoBehaviour
 
     public List<CardSoundElements> pointCardSoundElements = new List<CardSoundElements>();
     public List<CardSoundElements> specialCardSoundElements = new List<CardSoundElements>();
+    public List<AudioSource[]> sounds;
 
     public AudioSource strongCard;
 
@@ -26,15 +27,17 @@ public class CardSounds : MonoBehaviour
 
     void Start()
     {
-        
-        newPointCardSoundElement.sound = pointSound.GetComponent<AudioSource>();
-        newPointCardSoundElement.ID = pointCardSoundElements.Count;
-        pointCardSoundElements.Add(newPointCardSoundElement);
+        GettingComponents(pointSound, pointCardSoundElements, newPointCardSoundElement);
+        GettingComponents(specialSound, specialCardSoundElements, newSpecialCardSoundElement);
+
+        //newPointCardSoundElement.sound = pointSound.GetComponent<AudioSource>();
+        //newPointCardSoundElement.ID = pointCardSoundElements.Count;
+        //pointCardSoundElements.Add(newPointCardSoundElement);
 
         
-        newSpecialCardSoundElement.sound = specialSound.GetComponent<AudioSource>();
-        newSpecialCardSoundElement.ID = specialCardSoundElements.Count;
-        specialCardSoundElements.Add(newSpecialCardSoundElement);
+        //newSpecialCardSoundElement.sound = specialSound.GetComponent<AudioSource>();
+        //newSpecialCardSoundElement.ID = specialCardSoundElements.Count;
+        //specialCardSoundElements.Add(newSpecialCardSoundElement);
 
     }
     public enum CardType
@@ -44,25 +47,40 @@ public class CardSounds : MonoBehaviour
         shifter
     };
 
+    void GettingComponents(GameObject soundHolder, List<CardSoundElements> cardSoundElements, CardSoundElements newCardSoundElement)
+    {
+        Component[] components = soundHolder.GetComponents<AudioSource>();
+        for (int i= 0; i < components.Length; i++)
+        {
+            newCardSoundElement.sound = components[i].GetComponent<AudioSource>();
+            newCardSoundElement.ID = i;
+            cardSoundElements.Add(newCardSoundElement);
+            //Debug.Log(components.ToString());
+            Debug.Log(components[i].name);
+        }
+        Debug.Log(cardSoundElements[3].sound.clip.name);
+        //Debug.Log(components.Length);
+    }
+
     void RandomizePointSounds()
     {
-        for (int i = 0; i < .Count; i++)
+        for (int i = 0; i < pointCardSoundElements.Count; i++)
         {
-            AudioSource temp = pointCardSounds[i];
-            int randomIndex = Random.Range(i, pointCardSounds.Count);
-            pointCardSounds[i] = pointCardSounds[randomIndex];
-            pointCardSounds[randomIndex] = temp;
+            CardSoundElements temp = pointCardSoundElements[i];
+            int randomIndex = Random.Range(i, pointCardSoundElements.Count);
+            pointCardSoundElements[i] = pointCardSoundElements[randomIndex];
+            pointCardSoundElements[randomIndex] = temp;
         }
     }
 
     void RandomizeSpecialCards()
     {
-        for (int i = 0; i < specialCardSounds.Count; i++)
+        for (int i = 0; i < specialCardSoundElements.Count; i++)
         {
-            AudioSource temp = specialCardSounds[i];
-            int randomIndex = Random.Range(i, specialCardSounds.Count);
-            specialCardSounds[i] = specialCardSounds[randomIndex];
-            specialCardSounds[randomIndex] = temp;
+            CardSoundElements temp = specialCardSoundElements[i];
+            int randomIndex = Random.Range(i, specialCardSoundElements.Count);
+            specialCardSoundElements[i] = specialCardSoundElements[randomIndex];
+            specialCardSoundElements[randomIndex] = temp;
         }
     }
 

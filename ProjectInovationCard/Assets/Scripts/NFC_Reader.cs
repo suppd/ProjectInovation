@@ -95,4 +95,9 @@ public class NFC_Reader : MonoBehaviour
             cardSoundsScript.pointCardSoundElements[5].sound.Play();
         }
     }
+
+    public void TestSounds()
+    {
+        cardSoundsScript.pointCardSoundElements[2].sound.Play();
+    }
 }
