@@ -106,39 +106,53 @@ public class NFC_Reader : MonoBehaviour
         if (ScanNFC() == "PowerCard.3")
         {
             soundplayer.PlaySound(2);
+            alreadyPlayed = true;
         }
         if (ScanNFC() == "PowerCard.4")
         {
             soundplayer.PlaySound(3);
+            alreadyPlayed = true;
         }
 
         if (ScanNFC() == "PowerCard.5")
         {
             soundplayer.PlaySound(4);
+            alreadyPlayed = true;
         }
 
         if (ScanNFC() == "PowerCard.6")
         {
             soundplayer.PlaySound(5);
+            alreadyPlayed = true;
         }
 
         if (result == "SpecialCard.1")
         {
             soundplayer.PlaySpecialSound(0);
+            alreadyPlayed = true;
         }
         if (result == "SpecialCard.2")
         {
             soundplayer.PlaySpecialSound(2);
+            alreadyPlayed = true;
         }
         if (result == "SpecialCard.3")
         {
             soundplayer.PlaySpecialSound(3);
+            alreadyPlayed = true;
         }
         if (result == "SpecialCard.4")
         {
             soundplayer.PlaySpecialSound(4);
+            alreadyPlayed = true;
+        }
+        if (result == "ScatterCard.1")
+        {
+            soundplayer.PlayScatterSound();
+            alreadyPlayed = true;
         }
     }
+
 
     public void TestSounds()
     {

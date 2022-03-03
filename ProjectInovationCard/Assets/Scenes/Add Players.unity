@@ -3418,6 +3418,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c2a3cc8dbd0c23b45b7df37fb37faf27, type: 3}
   - {fileID: 8300000, guid: d72da073a8fd2b2458fb6f21629cc31f, type: 3}
   - {fileID: 8300000, guid: d1b724609a281d943a93eb88d572eb8c, type: 3}
+  scatterSound: {fileID: 8300000, guid: 08f1edd7b277efc4fb85a1d7eaae90d3, type: 3}
   volumes:
   - 1
   - 1
@@ -3425,7 +3426,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  audioSourceSpecial: {fileID: 0}
 --- !u!1 &1657629604
 GameObject:
   m_ObjectHideFlags: 0

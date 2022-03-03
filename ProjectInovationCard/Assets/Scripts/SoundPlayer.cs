@@ -6,6 +6,7 @@ public class SoundPlayer : MonoBehaviour
 {
     public AudioClip[] pointSounds;
     public AudioClip[] specialSounds;
+    public AudioClip scatterSound;
     public float[] volumes;
 
     AudioSource audioSource;
@@ -31,8 +32,13 @@ public class SoundPlayer : MonoBehaviour
     {
         if (index >= 0 && index < pointSounds.Length && !audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(pointSounds[index], volumes[index]); // may give out of range error!
+            audioSource.PlayOneShot(specialSounds[index], volumes[index]); // may give out of range error!
         }
+    }
+
+    public void PlayScatterSound()
+    {
+        audioSource.PlayOneShot(scatterSound);
     }
 
     // Update is called once per frame
