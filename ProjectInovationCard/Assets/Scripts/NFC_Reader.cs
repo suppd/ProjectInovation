@@ -17,8 +17,14 @@ public class NFC_Reader : MonoBehaviour
     private string sAction;
 
     public Text displayText;
+    public Text debugText;
     public CardSounds cardSoundsScript;
+    public SoundPlayer soundplayer;
 
+    //sound logic
+    public bool alreadyPlayed = false;
+    string result = "";
+    string lastResult = "";
 
     void Start()
     {
@@ -32,7 +38,7 @@ public class NFC_Reader : MonoBehaviour
             if (!tagFound)
             {
                 PlaySounds();
-                
+                CheckIfResultChanged();
             }
         }
     }
@@ -51,9 +57,13 @@ public class NFC_Reader : MonoBehaviour
                 AndroidJavaObject[] rawMsg = mIntent.Call<AndroidJavaObject[]>("getParcelableArrayExtra", "android.nfc.extra.NDEF_MESSAGES");
                 AndroidJavaObject[] records = rawMsg[0].Call<AndroidJavaObject[]>("getRecords");
                 byte[] payLoad = records[0].Call<byte[]>("getPayload");
-                string result = System.Text.Encoding.Default.GetString(payLoad); // not sure if it works for all encodings, but it works for me
-
+                result = System.Text.Encoding.Default.GetString(payLoad); // not sure if it works for all encodings, but it works for me
+                
                 tag_output_text.text = result;
+                //if(lastResult == result)
+                //{
+                //    result = "second";
+                //}
                 return result;
             }
         }
@@ -66,41 +76,86 @@ public class NFC_Reader : MonoBehaviour
         return "no scan";
     }
 
+    void CheckIfResultChanged()
+    {
+        if (lastResult != result)
+        {
+            lastResult = result;
+            alreadyPlayed = false;
+        }
+        else if (result == "second")
+        {
+            alreadyPlayed = false;
+        }
+    }
+
     void PlaySounds()
     {
-        if(ScanNFC() == "PowerCard.1")
+        if(result == "PowerCard.1" && !alreadyPlayed)
         {
-            var soundPlayer = FindObjectOfType<SoundPlayer>(); // make sure there's exactly one!
-            soundPlayer.PlaySound(0);
-
-            //cardSoundsScript.pointCardSoundElements[0].sound.Play();
+            alreadyPlayed = true;
+            soundplayer.PlaySound(0);
+            //result = "stop";
         }
-        if (ScanNFC() == "PowerCard.2")
+        if (result == "PowerCard.2" && !alreadyPlayed)
         {
-            cardSoundsScript.pointCardSoundElements[1].sound.Play();
+            alreadyPlayed = true;
+            soundplayer.PlaySound(1);
+            //result = "stop";
         }
         if (ScanNFC() == "PowerCard.3")
         {
-            cardSoundsScript.pointCardSoundElements[2].sound.Play();
+            soundplayer.PlaySound(2);
+            alreadyPlayed = true;
         }
         if (ScanNFC() == "PowerCard.4")
         {
-            cardSoundsScript.pointCardSoundElements[3].sound.Play();
+            soundplayer.PlaySound(3);
+            alreadyPlayed = true;
         }
 
         if (ScanNFC() == "PowerCard.5")
         {
-            cardSoundsScript.pointCardSoundElements[4].sound.Play();
+            soundplayer.PlaySound(4);
+            alreadyPlayed = true;
         }
 
         if (ScanNFC() == "PowerCard.6")
         {
-            cardSoundsScript.pointCardSoundElements[5].sound.Play();
+            soundplayer.PlaySound(5);
+            alreadyPlayed = true;
+        }
+
+        if (result == "SpecialCard.1")
+        {
+            soundplayer.PlaySpecialSound(0);
+            alreadyPlayed = true;
+        }
+        if (result == "SpecialCard.2")
+        {
+            soundplayer.PlaySpecialSound(2);
+            alreadyPlayed = true;
+        }
+        if (result == "SpecialCard.3")
+        {
+            soundplayer.PlaySpecialSound(3);
+            alreadyPlayed = true;
+        }
+        if (result == "SpecialCard.4")
+        {
+            soundplayer.PlaySpecialSound(4);
+            alreadyPlayed = true;
+        }
+        if (result == "ScatterCard.1")
+        {
+            soundplayer.PlayScatterSound();
+            alreadyPlayed = true;
         }
     }
 
+
     public void TestSounds()
     {
-        cardSoundsScript.pointCardSoundElements[1].sound.Play();
+        //cardSoundsScript.pointCardSoundElements[1].sound.Play();
     }
 }
