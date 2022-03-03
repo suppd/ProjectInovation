@@ -52,7 +52,7 @@ public class CardSounds : MonoBehaviour
         Component[] components = soundHolder.GetComponents<AudioSource>();
         for (int i= 0; i < components.Length; i++)
         {
-            newCardSoundElement.sound = components[i].GetComponent<AudioSource>();
+            newCardSoundElement.sound = (AudioSource)components[i];//.GetComponent<AudioSource>();
             newCardSoundElement.ID = i;
             cardSoundElements.Add(newCardSoundElement);
             //Debug.Log(components.ToString());

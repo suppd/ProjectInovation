@@ -70,7 +70,10 @@ public class NFC_Reader : MonoBehaviour
     {
         if(ScanNFC() == "PowerCard.1")
         {
-            cardSoundsScript.pointCardSoundElements[0].sound.Play();
+            var soundPlayer = FindObjectOfType<SoundPlayer>(); // make sure there's exactly one!
+            soundPlayer.PlaySound(0);
+
+            //cardSoundsScript.pointCardSoundElements[0].sound.Play();
         }
         if (ScanNFC() == "PowerCard.2")
         {
@@ -98,6 +101,6 @@ public class NFC_Reader : MonoBehaviour
 
     public void TestSounds()
     {
-        cardSoundsScript.pointCardSoundElements[2].sound.Play();
+        cardSoundsScript.pointCardSoundElements[1].sound.Play();
     }
 }
