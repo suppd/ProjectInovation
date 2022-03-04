@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardSoundElements
-{
-    public int ID;
-    public AudioSource sound;
-}
+
 
 public class CardSounds : MonoBehaviour
 {
@@ -52,13 +48,13 @@ public class CardSounds : MonoBehaviour
         Component[] components = soundHolder.GetComponents<AudioSource>();
         for (int i= 0; i < components.Length; i++)
         {
-            newCardSoundElement.sound = (AudioSource)components[i];//.GetComponent<AudioSource>();
-            newCardSoundElement.ID = i;
-            cardSoundElements.Add(newCardSoundElement);
+            //newCardSoundElement.sound = (AudioSource)components[i];//.GetComponent<AudioSource>();
+            //newCardSoundElement.ID = i;
+            //cardSoundElements.Add(newCardSoundElement);
             //Debug.Log(components.ToString());
-            Debug.Log(components[i].name);
+            //Debug.Log(components[i].name);
         }
-        Debug.Log(cardSoundElements[3].sound.clip.name);
+        //Debug.Log(cardSoundElements[3].sound.clip.name);
         //Debug.Log(components.Length);
     }
 
