@@ -16,9 +16,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private PlayerManager _playerManager;
     private List<PlayerElements> _newOrder = new List<PlayerElements>();
     private List<int> _orderer = new List<int>();
+    
+    [SerializeField] private GameObject _currentAndNext;
 
-    [SerializeField] private GameObject _currentPlayer;
-    [SerializeField] private GameObject _nextPlayer;
+    [SerializeField] private GameObject[] _highlight;
 
     public void Reorder()
     {
@@ -65,7 +66,6 @@ public class RoundManager : MonoBehaviour
         }
     }
     
-    
     public void Turn()
     {
         turn++;
@@ -73,27 +73,26 @@ public class RoundManager : MonoBehaviour
         {
             _newOrder.Clear();
             round++;
+            ShowRoundsOnIndicators();
             Reorder();
             Debug.Log("we are in round" + round);
         }
         
-        var currentPlayerName = _currentPlayer.GetComponentInChildren<Text>();
-        currentPlayerName.text = _newOrder[turn-1].playerName;
-        
         if (turn != turnsPerRound)
         {
-            var nextPlayerName = _nextPlayer.GetComponentInChildren<Text>();
-            nextPlayerName.text = _newOrder[turn].playerName;
+            var currentPlayerNames = _currentAndNext.GetComponentInChildren<Text>();
+            currentPlayerNames.text = _newOrder[turn-1].playerName + "'s Turn" + Environment.NewLine + "Next" + Environment.NewLine + _newOrder[turn].playerName;
         }else
         {
-            var nextPlayerName = _nextPlayer.GetComponentInChildren<Text>();
-            nextPlayerName.text = "end of round";
+            var currentPlayerNames = _currentAndNext.GetComponentInChildren<Text>();
+            currentPlayerNames.text = _newOrder[turn].playerName + "'s Turn" + Environment.NewLine;
+            Debug.Log("poselden red za runda");
         }
-
     }
 
-    public void DispalyScore()
+    public void ShowRoundsOnIndicators()
     {
-
+        _highlight[round-1].SetActive(true);
+        _highlight[round-2].SetActive(false);
     }
 }
