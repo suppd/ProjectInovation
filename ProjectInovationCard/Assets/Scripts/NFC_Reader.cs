@@ -43,7 +43,7 @@ public class NFC_Reader : MonoBehaviour
     void Update()
     {
         //TestPoints();
-        soundplayer.PlaySound(neworderPoint[0]);
+        //soundplayer.PlaySound(neworderPoint[0]);
         //soundplayer.PlaySound(2);
         //soundplayer.PlaySound(4);
         //soundplayer.PlaySpecialSound(0);
