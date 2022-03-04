@@ -37,7 +37,7 @@ public class NFC_Reader : MonoBehaviour
     {
         RandomizeSounds(neworderPoint,soundplayer.pointSounds.Length);
         RandomizeSounds(neworderSpecial, soundplayer.specialSounds.Length);
-        tag_output_text.text = "No tag...";
+        //tag_output_text.text = "No tag...";
     }
 
     void Update()
