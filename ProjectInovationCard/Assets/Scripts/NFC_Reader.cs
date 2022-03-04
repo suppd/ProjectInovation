@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class NFC_Reader : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class NFC_Reader : MonoBehaviour
 
     public int[] pointPlays;
     public int[] specialPlays;
+    public List<int> neworderPoint = new List<int>();
+    public List<int> neworderSpecial = new List<int>();
+
 
     //sound logic
     public bool alreadyPlayed = false;
@@ -31,16 +35,18 @@ public class NFC_Reader : MonoBehaviour
 
     void Start()
     {
+        RandomizeSounds(neworderPoint,soundplayer.pointSounds.Length);
+        RandomizeSounds(neworderSpecial, soundplayer.specialSounds.Length);
         tag_output_text.text = "No tag...";
     }
 
     void Update()
     {
         //TestPoints();
-        //soundplayer.PlaySound(0);
+        soundplayer.PlaySound(neworderPoint[0]);
         //soundplayer.PlaySound(2);
         //soundplayer.PlaySound(4);
-        soundplayer.PlaySpecialSound(0);
+        //soundplayer.PlaySpecialSound(0);
         if (Application.platform == RuntimePlatform.Android)
         {
             if (!tagFound)
@@ -110,70 +116,87 @@ public class NFC_Reader : MonoBehaviour
             Debug.Log("increased point!");
         }
     }
+
+    void RandomizeSounds(List<int> neworder, int soundLength)
+    {
+        List<int> orderer = new List<int>();
+        for (int i = 0; i < soundLength; i++)
+        {
+            orderer.Add(i);
+        }
+
+        for (int i = 0; i < soundLength; i++)
+        {
+            int rand = Random.Range(0, orderer.Count);
+            neworder.Add(orderer[rand]);
+            orderer.Remove(orderer[rand]);
+        }
+
+    }
     void PlaySounds()
     {
         if(result == "PowerCard.1" && !alreadyPlayed)
         {
             alreadyPlayed = true;
-            soundplayer.PlaySound(0);
+            soundplayer.PlaySound(neworderPoint[0]);
             AddPlaysPoint(0);
             //result = "stop";
         }
         if (result == "PowerCard.2" && !alreadyPlayed)
         {
             alreadyPlayed = true;
-            soundplayer.PlaySound(1);
+            soundplayer.PlaySound(neworderPoint[1]);
             AddPlaysPoint(1);
             //result = "stop";
         }
         if (ScanNFC() == "PowerCard.3" && !alreadyPlayed)
         {
-            soundplayer.PlaySound(2);
+            soundplayer.PlaySound(neworderPoint[2]);
             alreadyPlayed = true;
             AddPlaysPoint(2);
         }
         if (ScanNFC() == "PowerCard.4" && !alreadyPlayed)
         {
-            soundplayer.PlaySound(3);
+            soundplayer.PlaySound(neworderPoint[3]);
             alreadyPlayed = true;
             AddPlaysPoint(3);
         }
 
         if (ScanNFC() == "PowerCard.5" && !alreadyPlayed)
         {
-            soundplayer.PlaySound(4);
+            soundplayer.PlaySound(neworderPoint[4]);
             alreadyPlayed = true;
             AddPlaysPoint(4);
         }
 
         if (ScanNFC() == "PowerCard.6" && !alreadyPlayed)
         {
-            soundplayer.PlaySound(5);
+            soundplayer.PlaySound(neworderPoint[5]);
             alreadyPlayed = true;
             AddPlaysPoint(5);
         }
 
         if (result == "SpecialCard.1" && !alreadyPlayed)
         {
-            soundplayer.PlaySpecialSound(0);
+            soundplayer.PlaySpecialSound(neworderSpecial[0]);
             alreadyPlayed = true;
             AddPlaysSpecial(0);
         }
         if (result == "SpecialCard.2" && !alreadyPlayed)
         {
-            soundplayer.PlaySpecialSound(2);
+            soundplayer.PlaySpecialSound(neworderSpecial[1]);
             alreadyPlayed = true;
             AddPlaysSpecial(1);
         }
         if (result == "SpecialCard.3" && !alreadyPlayed)
         {
-            soundplayer.PlaySpecialSound(3);
+            soundplayer.PlaySpecialSound(neworderSpecial[2]);
             alreadyPlayed = true;
             AddPlaysSpecial(2);
         }
         if (result == "SpecialCard.4" && !alreadyPlayed)
         {
-            soundplayer.PlaySpecialSound(4);
+            soundplayer.PlaySpecialSound(neworderSpecial[3]);
             alreadyPlayed = true;
             AddPlaysSpecial(3);
         }

@@ -12,6 +12,7 @@ public class SoundPlayer : MonoBehaviour
 {
     public AudioClip[] pointSounds;
     public AudioClip[] specialSounds;
+    public int[] IDp;
     public AudioClip scatterSound;
     public float[] volumes;
     public List<CardSoundElements> pointCardSoundElements = new List<CardSoundElements>();
@@ -24,16 +25,19 @@ public class SoundPlayer : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        
-        
+
+
         // TODO: verify that both arrays have the same length!
     }
-
+    
     private void Awake()
     {
         addToList(pointCardSoundElements, pointSounds);
         addToList(specialCardSoundElements, specialSounds);
+
+      
     }
+
 
     void addToList(List<CardSoundElements> cardSoundElements, AudioClip[] audio)
     {
