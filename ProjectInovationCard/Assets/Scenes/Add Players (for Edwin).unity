@@ -644,7 +644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &186371025
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &206721619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1637,7 +1637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &210871776
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4686,14 +4686,9 @@ MonoBehaviour:
   tagID: 
   tag_output_text: {fileID: 0}
   tagFound: 0
-  displayText: {fileID: 0}
-  debugText: {fileID: 0}
-  cardSoundsScript: {fileID: 0}
   soundplayer: {fileID: 1641933668}
   pointPlays: 000000000000000000000000000000000000000000000000
   specialPlays: 00000000000000000000000000000000
-  neworderPoint: 
-  neworderSpecial: 
   alreadyPlayed: 0
 --- !u!1 &775408000
 GameObject:
@@ -5777,7 +5772,7 @@ RectTransform:
   m_GameObject: {fileID: 976831471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1753403290}
   m_RootOrder: 1
@@ -7618,7 +7613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -470, y: -130}
+  m_AnchoredPosition: {x: -589, y: -130}
   m_SizeDelta: {x: 1000, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419021298
@@ -8617,7 +8612,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -8727,14 +8722,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d72da073a8fd2b2458fb6f21629cc31f, type: 3}
   - {fileID: 8300000, guid: d1b724609a281d943a93eb88d572eb8c, type: 3}
   IDp: 
-  scatterSound: {fileID: 0}
+  scatterSound: {fileID: 8300000, guid: 08f1edd7b277efc4fb85a1d7eaae90d3, type: 3}
   volumes:
   - 1
   - 1
   - 1
   - 1
-  - 0.2
-  - 0.3
+  - 1
+  - 1
 --- !u!1 &1646978872
 GameObject:
   m_ObjectHideFlags: 0
@@ -10652,7 +10647,7 @@ RectTransform:
   m_GameObject: {fileID: 1988359313}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 678571679}
   m_Father: {fileID: 496797402}

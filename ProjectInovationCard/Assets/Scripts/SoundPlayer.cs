@@ -33,9 +33,7 @@ public class SoundPlayer : MonoBehaviour
     private void Awake()
     {
         addToList(pointCardSoundElements, pointSounds);
-        addToList(specialCardSoundElements, specialSounds);
-
-      
+        addToList(specialCardSoundElements, specialSounds);     
     }
 
 

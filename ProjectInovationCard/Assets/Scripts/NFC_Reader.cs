@@ -17,15 +17,12 @@ public class NFC_Reader : MonoBehaviour
     private AndroidJavaObject mIntent;
     private string sAction;
 
-    public Text displayText;
-    public Text debugText;
-    public CardSounds cardSoundsScript;
     public SoundPlayer soundplayer;
 
     public int[] pointPlays;
     public int[] specialPlays;
-    public List<int> neworderPoint = new List<int>();
-    public List<int> neworderSpecial = new List<int>();
+    List<int> neworderPoint = new List<int>();
+    List<int> neworderSpecial = new List<int>();
 
 
     //sound logic
@@ -43,17 +40,28 @@ public class NFC_Reader : MonoBehaviour
     void Update()
     {
         //TestPoints();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            soundplayer.PlaySound(neworderPoint[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            soundplayer.PlaySound(neworderPoint[1]);
+        }
         //soundplayer.PlaySound(neworderPoint[0]);
         //soundplayer.PlaySound(2);
         //soundplayer.PlaySound(4);
+        //soundplayer.PlaySpecialSound(neworderSpecial[1]);
         //soundplayer.PlaySpecialSound(0);
+
         if (Application.platform == RuntimePlatform.Android)
         {
             if (!tagFound)
             {
-                PlaySounds();
                 CheckIfResultChanged();
-                
+                PlaySounds();
+
+                //ScanNFC();
             }
         }
     }
@@ -75,10 +83,7 @@ public class NFC_Reader : MonoBehaviour
                 result = System.Text.Encoding.Default.GetString(payLoad); // not sure if it works for all encodings, but it works for me
                 
                 tag_output_text.text = result;
-                //if(lastResult == result)
-                //{
-                //    result = "second";
-                //}
+                //lastResult = result;
                 return result;
             }
         }
@@ -93,12 +98,7 @@ public class NFC_Reader : MonoBehaviour
 
     void CheckIfResultChanged()
     {
-        if (lastResult != result)
-        {
-            lastResult = result;
-            alreadyPlayed = false;
-        }
-        else if (result == "second")
+        if (ScanNFC() != lastResult)
         {
             alreadyPlayed = false;
         }
@@ -135,41 +135,42 @@ public class NFC_Reader : MonoBehaviour
     }
     void PlaySounds()
     {
-        if(result == "PowerCard.1" && !alreadyPlayed)
+        if(ScanNFC() == "PointCard.1")
         {
-            alreadyPlayed = true;
             soundplayer.PlaySound(neworderPoint[0]);
             AddPlaysPoint(0);
+            alreadyPlayed = true;
             //result = "stop";
         }
-        if (result == "PowerCard.2" && !alreadyPlayed)
+        if (ScanNFC() == "PointCard.2" && !alreadyPlayed)
         {
-            alreadyPlayed = true;
+            
             soundplayer.PlaySound(neworderPoint[1]);
+            alreadyPlayed = true;
             AddPlaysPoint(1);
             //result = "stop";
         }
-        if (ScanNFC() == "PowerCard.3" && !alreadyPlayed)
+        if (ScanNFC() == "PointCard.3")
         {
             soundplayer.PlaySound(neworderPoint[2]);
             alreadyPlayed = true;
             AddPlaysPoint(2);
         }
-        if (ScanNFC() == "PowerCard.4" && !alreadyPlayed)
+        if (ScanNFC() == "PointCard.4" && !alreadyPlayed)
         {
             soundplayer.PlaySound(neworderPoint[3]);
             alreadyPlayed = true;
             AddPlaysPoint(3);
         }
 
-        if (ScanNFC() == "PowerCard.5" && !alreadyPlayed)
+        if (result == "PointCard.5" && !alreadyPlayed)
         {
             soundplayer.PlaySound(neworderPoint[4]);
             alreadyPlayed = true;
             AddPlaysPoint(4);
         }
 
-        if (ScanNFC() == "PowerCard.6" && !alreadyPlayed)
+        if (result == "PointCard.6" && !alreadyPlayed)
         {
             soundplayer.PlaySound(neworderPoint[5]);
             alreadyPlayed = true;

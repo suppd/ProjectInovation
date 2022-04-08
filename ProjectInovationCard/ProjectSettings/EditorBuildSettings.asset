@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Add Players.unity
-    guid: 8c0a2876bf4f0134487a6c373df9193a
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: f409869a4c7fd3f479034dc6a746f830
+    path: Assets/Scenes/Add Players (for Edwin).unity
+    guid: 6fe33c3a45acc484c861d78f39ee6f27
   m_configObjects: {}
