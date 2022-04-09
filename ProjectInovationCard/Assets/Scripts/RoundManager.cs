@@ -13,11 +13,14 @@ public class RoundManager : MonoBehaviour
     private int turn;
     private int turnsPerRound;
 
+    public bool gameOver = false;
+
     [SerializeField] private PlayerManager _playerManager;
     private List<PlayerElements> _newOrder = new List<PlayerElements>();
     private List<int> _orderer = new List<int>();
     
     [SerializeField] private GameObject _currentAndNext;
+    [SerializeField] private GameObject _current;
 
     [SerializeField] private GameObject[] _highlight;
 
@@ -50,10 +53,17 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("round " + round);
+        Debug.Log("turn " + turn);
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Reorder();
             DebugShowPlayerNames();
+        }
+
+        if (round > roundsPerGame)
+        {
+            gameOver = true;
         }
     }
     
@@ -65,7 +75,12 @@ public class RoundManager : MonoBehaviour
             Debug.Log(_newOrder[i].playerName);
         }
     }
-    
+    public void SetupGame()
+    {
+        round = 1;
+        ShowRoundsOnIndicators();
+        Reorder();
+    }
     public void Turn()
     {
         turn++;
@@ -81,18 +96,21 @@ public class RoundManager : MonoBehaviour
         if (turn != turnsPerRound)
         {
             var currentPlayerNames = _currentAndNext.GetComponentInChildren<Text>();
-            currentPlayerNames.text = _newOrder[turn-1].playerName + "'s Turn" + Environment.NewLine + "Next" + Environment.NewLine + _newOrder[turn].playerName;
-        }else
+            currentPlayerNames.text = _newOrder[turn -1].playerName + "'s Turn" + Environment.NewLine + "Next" + Environment.NewLine + _newOrder[turn].playerName;
+        }
+        else
         {
             var currentPlayerNames = _currentAndNext.GetComponentInChildren<Text>();
-            currentPlayerNames.text = _newOrder[turn].playerName + "'s Turn" + Environment.NewLine;
-            Debug.Log("poselden red za runda");
+            currentPlayerNames.text = _newOrder[turn-1].playerName + "'s Turn" + Environment.NewLine;
         }
     }
 
     public void ShowRoundsOnIndicators()
     {
         _highlight[round-1].SetActive(true);
-        _highlight[round-2].SetActive(false);
+        if (round != 1)
+        {
+            _highlight[round - 2].SetActive(false);
+        }
     }
 }

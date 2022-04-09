@@ -39,14 +39,23 @@ public class NFC_Reader : MonoBehaviour
 
     void Update()
     {
+        
         //TestPoints();
         if (Input.GetKeyDown(KeyCode.A))
         {
-            soundplayer.PlaySound(neworderPoint[0]);
+            soundplayer.PlaySpecialSound(neworderPoint[0]);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            soundplayer.PlaySound(neworderPoint[1]);
+            soundplayer.PlaySpecialSound(neworderPoint[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            soundplayer.PlaySpecialSound(neworderPoint[2]);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            soundplayer.PlaySpecialSound(neworderPoint[3]);
         }
         //soundplayer.PlaySound(neworderPoint[0]);
         //soundplayer.PlaySound(2);
@@ -56,12 +65,14 @@ public class NFC_Reader : MonoBehaviour
 
         if (Application.platform == RuntimePlatform.Android)
         {
+            ScanNFC();
             if (!tagFound)
             {
                 CheckIfResultChanged();
                 PlaySounds();
+                lastResult = result;
 
-                //ScanNFC();
+                
             }
         }
     }
@@ -135,28 +146,26 @@ public class NFC_Reader : MonoBehaviour
     }
     void PlaySounds()
     {
-        if(ScanNFC() == "PointCard.1")
+        if(result == "PointCard.1" && !alreadyPlayed)
         {
             soundplayer.PlaySound(neworderPoint[0]);
             AddPlaysPoint(0);
             alreadyPlayed = true;
-            //result = "stop";
         }
-        if (ScanNFC() == "PointCard.2" && !alreadyPlayed)
+        if (result == "PointCard.2" && !alreadyPlayed)
         {
             
             soundplayer.PlaySound(neworderPoint[1]);
             alreadyPlayed = true;
             AddPlaysPoint(1);
-            //result = "stop";
         }
-        if (ScanNFC() == "PointCard.3")
+        if (result == "PointCard.3" && !alreadyPlayed)
         {
             soundplayer.PlaySound(neworderPoint[2]);
             alreadyPlayed = true;
             AddPlaysPoint(2);
         }
-        if (ScanNFC() == "PointCard.4" && !alreadyPlayed)
+        if (result == "PointCard.4" && !alreadyPlayed)
         {
             soundplayer.PlaySound(neworderPoint[3]);
             alreadyPlayed = true;
@@ -227,6 +236,6 @@ public class NFC_Reader : MonoBehaviour
 
     public void TestSounds()
     {
-        //cardSoundsScript.pointCardSoundElements[1].sound.Play();
+         soundplayer.PlaySpecialSound(neworderSpecial[0]);
     }
 }

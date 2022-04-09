@@ -25,12 +25,22 @@ public class AddNDisplayPlayers : MonoBehaviour
 
     void showBoxes()
     {
+        float placementY;
+        if (_playerManager._playerElements.Count >= 4)
+        {
+            placementY = 100;
 
+        }
+        else
+        {
+            placementY = 125;
+        }
         if (_currentlyDisplayed < _playerManager._playerElements.Count)
         {
 
-                GameObject templateInstantiate = Instantiate(playerInfoTemplate, playerInfoContainer);
-                templateInstantiate.transform.localPosition = new Vector3(0, -150 * _currentlyDisplayed, 0);
+                GameObject templateInstantiate = Instantiate(playerInfoTemplate,playerInfoContainer);
+                templateInstantiate.transform.localPosition = new Vector3(-100, -125 * _currentlyDisplayed, 0);
+                templateInstantiate.transform.localScale = new Vector3(0.8f, 0.8f, 1);
                 Text templateText = templateInstantiate.GetComponentInChildren<Text>();
                 templateText.text = _playerManager._playerElements[_currentlyDisplayed].playerName;
                 _currentlyDisplayed = _playerManager._playerElements.Count;
