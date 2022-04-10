@@ -11,6 +11,7 @@ public class PlayerElements
         public Image backImage;
         public string playerName;
         public int iD;
+        public int score;
         public int roundScore;
         public int gameScore;
 }
@@ -41,6 +42,7 @@ public class PlayerManager : MonoBehaviour
                 PlayerElements newPlayer = new PlayerElements();
                 newPlayer.playerName = inputName.text;
                 newPlayer.iD = _playerElements.Count + 1;
+                newPlayer.score = 0;
                 _playerElements.Add(newPlayer);
         }
 }

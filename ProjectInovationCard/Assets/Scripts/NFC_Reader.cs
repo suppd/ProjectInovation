@@ -13,6 +13,14 @@ public class NFC_Reader : MonoBehaviour
     public Text tag_output_text;
     public bool tagFound = false;
 
+    public GameObject playerManager;
+    public GameObject scoreManager;
+    public GameObject roundManager;
+
+    private PlayerManager playerMangerScript;
+    private Score scoreManagerScript;
+    private RoundManager roundManagerScript;
+
     private AndroidJavaObject mActivity;
     private AndroidJavaObject mIntent;
     private string sAction;
@@ -32,6 +40,10 @@ public class NFC_Reader : MonoBehaviour
 
     void Start()
     {
+        playerMangerScript = playerManager.GetComponent<PlayerManager>();
+        scoreManagerScript = scoreManager.GetComponent<Score>();
+        roundManagerScript = roundManager.GetComponent<RoundManager>();
+
         RandomizeSounds(neworderPoint,soundplayer.pointSounds.Length);
         RandomizeSounds(neworderSpecial, soundplayer.specialSounds.Length);
         //tag_output_text.text = "No tag...";
@@ -150,7 +162,7 @@ public class NFC_Reader : MonoBehaviour
         {
             soundplayer.PlaySound(neworderPoint[0]);
             AddPlaysPoint(0);
-            alreadyPlayed = true;
+            alreadyPlayed = true;        
         }
         if (result == "PointCard.2" && !alreadyPlayed)
         {

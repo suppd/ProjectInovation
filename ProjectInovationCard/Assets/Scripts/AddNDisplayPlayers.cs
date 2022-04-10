@@ -25,16 +25,6 @@ public class AddNDisplayPlayers : MonoBehaviour
 
     void showBoxes()
     {
-        float placementY;
-        if (_playerManager._playerElements.Count >= 4)
-        {
-            placementY = 100;
-
-        }
-        else
-        {
-            placementY = 125;
-        }
         if (_currentlyDisplayed < _playerManager._playerElements.Count)
         {
 

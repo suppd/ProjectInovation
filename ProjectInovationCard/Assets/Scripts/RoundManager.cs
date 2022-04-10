@@ -14,11 +14,14 @@ public class RoundManager : MonoBehaviour
     private int turnsPerRound;
 
     public bool gameOver = false;
+    public int currentPlayerID;
 
     [SerializeField] private PlayerManager _playerManager;
     private List<PlayerElements> _newOrder = new List<PlayerElements>();
     private List<int> _orderer = new List<int>();
-    
+
+    [SerializeField] private GameObject _turnButton;
+    [SerializeField] private GameObject _endGameButton;
     [SerializeField] private GameObject _currentAndNext;
     [SerializeField] private GameObject _current;
 
@@ -65,6 +68,12 @@ public class RoundManager : MonoBehaviour
         {
             gameOver = true;
         }
+
+        if (gameOver)
+        {
+            _endGameButton.gameObject.SetActive(true);
+            _turnButton.gameObject.SetActive(false);
+        }
     }
     
     void DebugShowPlayerNames()
@@ -97,12 +106,14 @@ public class RoundManager : MonoBehaviour
         {
             var currentPlayerNames = _currentAndNext.GetComponentInChildren<Text>();
             currentPlayerNames.text = _newOrder[turn -1].playerName + "'s Turn" + Environment.NewLine + "Next" + Environment.NewLine + _newOrder[turn].playerName;
+           
         }
         else
         {
             var currentPlayerNames = _currentAndNext.GetComponentInChildren<Text>();
             currentPlayerNames.text = _newOrder[turn-1].playerName + "'s Turn" + Environment.NewLine;
         }
+        currentPlayerID = _newOrder[turn - 1].iD;
     }
 
     public void ShowRoundsOnIndicators()
