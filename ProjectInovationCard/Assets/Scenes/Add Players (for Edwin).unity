@@ -3506,10 +3506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64df06a932e868048995aeedcd0f15e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManger: {fileID: 711356439}
-  roundManager: {fileID: 1157334300}
-  _roundManager: {fileID: 0}
-  _playerManager: {fileID: 0}
 --- !u!1 &479295482
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +3944,7 @@ GameObject:
   - component: {fileID: 515929997}
   - component: {fileID: 515929996}
   - component: {fileID: 515929999}
+  - component: {fileID: 515930000}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -4031,6 +4028,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 515930000}
+        m_TargetAssemblyTypeName: DisableThisEnableThat, Assembly-CSharp
+        m_MethodName: DisableThisEnableThatFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &515929997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,6 +4091,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableThis: {fileID: 188930677}
+  enableThat: {fileID: 206721618}
+--- !u!114 &515930000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515929994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e59d14ab626ae54c8f82823dfd362ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableThis: {fileID: 480749811}
   enableThat: {fileID: 206721618}
 --- !u!1 &528543068
 GameObject:
