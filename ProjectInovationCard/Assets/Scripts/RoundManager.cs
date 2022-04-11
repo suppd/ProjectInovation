@@ -56,8 +56,6 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("round " + round);
-        Debug.Log("turn " + turn);
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Reorder();

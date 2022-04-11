@@ -18,7 +18,6 @@ public class NFC_Reader : MonoBehaviour
     public GameObject roundManager;
 
     private PlayerManager playerMangerScript;
-    private Score scoreManagerScript;
     private RoundManager roundManagerScript;
 
     private AndroidJavaObject mActivity;
@@ -41,7 +40,6 @@ public class NFC_Reader : MonoBehaviour
     void Start()
     {
         playerMangerScript = playerManager.GetComponent<PlayerManager>();
-        scoreManagerScript = scoreManager.GetComponent<Score>();
         roundManagerScript = roundManager.GetComponent<RoundManager>();
 
         RandomizeSounds(neworderPoint,soundplayer.pointSounds.Length);
