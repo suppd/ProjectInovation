@@ -34,14 +34,14 @@ public class ScoreScript : MonoBehaviour
 
         GameObject topscoreIniate = Instantiate(topScore, playerInfoContainer);
         topscoreIniate.transform.localPosition = new Vector3(-100, 0, 0);
-        Text topText = topscoreIniate.GetComponentInChildren<Text>();
+        InputField topText = topscoreIniate.GetComponentInChildren<InputField>();
         topText.text = _playerManager._playerElements[0].playerName;
         for (int i = 1; i < _playerManager._playerElements.Count; i++)
         {
             GameObject templateInstantiate = Instantiate(normalScores, playerInfoContainer);
             templateInstantiate.transform.localPosition = new Vector3(-100, -125 * i, 0);
             templateInstantiate.transform.localScale = new Vector3(0.8f, 0.8f, 1);
-            Text templateText = templateInstantiate.GetComponentInChildren<Text>();
+            InputField templateText = templateInstantiate.GetComponentInChildren<InputField>();
             templateText.text = _playerManager._playerElements[i].playerName;
             //_currentlyDisplayed = _playerManager._playerElements.Count;
         }
